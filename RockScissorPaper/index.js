@@ -8,34 +8,34 @@ const random = getRandom(0, 3);
 
 const getRobotAction = random => {
   if (random < 1) {
-    return 'rock'
+    return 'rock';
   } else if (random < 2) {
-    return 'scissor'
+    return 'scissor';
   } else {
-    return 'paper'
+    return 'paper';
   }
-}
+};
 
 robotAction = getRobotAction(random);
 
 const getResult = (user, robot) => {
-  if (user === robot) return '平局'
+  if (user === robot) return '平局';
   if (
     (user === 'rock' && robot === 'scissor') ||
     (user === 'scissor' && robot === 'paper') ||
     (user === 'paper' && robot === 'rock')
   ) {
-    return '你赢了'
+    return '你赢了';
   } else {
-    return '你输了'
+    return '你输了';
   }
-}
+};
 
 const print = () => {
   console.log(
-    robotAction,
+    `我出了${robotAction}，`,
     getResult(userAction, robotAction)
-  )
-}
+  );
+};
 
 print();
