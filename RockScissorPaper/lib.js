@@ -1,3 +1,5 @@
+const actionLists = ['rock', 'scissor', 'paper'];
+
 const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
 const getRobotAction = random => {
@@ -11,6 +13,7 @@ const getRobotAction = random => {
 };
 
 const getResult = (user, robot) => {
+  if (!actionLists.includes(user)) return false;
   if (user === robot) return '平局';
   if (
     (user === 'rock' && robot === 'scissor') ||
@@ -27,7 +30,9 @@ const game = (userAction) => {
   const random = getRandom(0, 3);
   const robotAction = getRobotAction(random);
   const result = getResult(userAction, robotAction);
-  const resultText = `我出了${robotAction}，${getResult(userAction, robotAction)}。`
+  const resultText = result
+    ? `我出了${robotAction}，${getResult(userAction, robotAction)}。`
+    : '好好玩儿，瞎出的啥玩意儿。'
   console.log(resultText);
   return resultText;
 };
