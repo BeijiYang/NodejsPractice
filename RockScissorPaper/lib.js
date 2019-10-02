@@ -1,6 +1,6 @@
 const actionLists = ['rock', 'scissor', 'paper'];
-
-const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+const breakPoint = 3;
+let count = 0;
 
 const getRobotAction = random => {
   if (random < 1) {
@@ -20,6 +20,7 @@ const getResult = (user, robot) => {
     (user === 'scissor' && robot === 'paper') ||
     (user === 'paper' && robot === 'rock')
   ) {
+    count++;
     return '你赢了';
   } else {
     return '你输了';
@@ -27,14 +28,16 @@ const getResult = (user, robot) => {
 };
 
 const game = (userAction) => {
-  const random = getRandom(0, 3);
+  const random = Math.random() * 3;
+
   const robotAction = getRobotAction(random);
   const result = getResult(userAction, robotAction);
   const resultText = result
-    ? `我出了${robotAction}，${getResult(userAction, robotAction)}。`
+    ? `我出了${robotAction}，${result}。`
     : '好好玩儿，瞎出的啥玩意儿。'
   console.log(resultText);
-  return resultText;
+  const reachBreakPoint = count === breakPoint;
+  return [resultText, reachBreakPoint];
 };
 
 module.exports = game;

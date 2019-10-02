@@ -4,5 +4,10 @@ const game = require('./lib');
 
 process.stdin.on('data', e => {
   const userAction = e.toString().trim();
-  game(userAction);
+  const [, suicide] = game(userAction);
+
+  if (suicide) {
+    console.log('你太厉害了，不玩儿了。');
+    process.exit()
+  }
 })
